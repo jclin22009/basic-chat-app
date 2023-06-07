@@ -7,6 +7,9 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  Typography,
+  TextField,
+  Button
 } from "@mui/material";
 import "./Chat.css";
 const { Configuration, OpenAIApi } = require("openai");
@@ -58,24 +61,26 @@ function Chat() {
 
   return (
     <div className="chat-container">
-      <h1>Chat</h1>
+      <Typography variant="h4">Chat</Typography>
       <div className="chat-history">
         {messages.map((message, index) => (
           <div key={index}>
-            <strong>{message.role}:</strong>
+            <strong>{message.role}: </strong>
             {message.content}
           </div>
         ))}
       </div>
 
       <form onSubmit={handleFormSubmit}>
-        <textarea
+        <TextField
           className="chat-input"
           value={input}
           onChange={handleInputChange}
           rows={3}
+          multiline
+          variant="outlined"
         />
-        <button type="submit">Send</button>
+        <Button type="submit" variant="contained" color="primary">Send</Button>
       </form>
     </div>
   );
